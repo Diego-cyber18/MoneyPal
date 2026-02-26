@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="MoneyPal" />
+  <meta name="apple-mobile-web-app-title" content="NOiduo" />
   <meta name="theme-color" content="#0d0d0f" />
-  <title>MoneyPal</title>
+  <title>NOiduo</title>
   <link rel="apple-touch-icon" href="icon.png" />
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -24,6 +24,7 @@
     .auth-secondary { background:#1a1a22;color:#888; }
     .auth-link { background:transparent!important;color:#555!important;font-size:13px!important;padding:8px!important; }
     #auth-error { color:#e74c3c;font-size:13px;margin-bottom:10px;min-height:18px;text-align:center; }
+    .google-btn { display:flex;align-items:center;justify-content:center;gap:10px;background:#fff!important;color:#333!important;border:1.5px solid #ddd!important;border-radius:10px;padding:13px!important; }
   </style>
 </head>
 <body>
@@ -32,20 +33,23 @@
     <div id="loading-msg" style="color:#555;font-size:13px;font-family:sans-serif">Caricamento...</div>
   </div>
   <div id="root"></div>
+
+  <!-- Auth Screen -->
   <div id="auth-screen">
     <div style="width:100%;max-width:380px">
-      <div style="font-family:'DM Serif Display',serif;font-size:28px;color:#e8c547;margin-bottom:6px;text-align:center">MoneyPal</div>
-      <div id="auth-subtitle" style="font-size:13px;color:#555;margin-bottom:28px;text-align:center">Accedi o crea una famiglia</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:28px;color:#e8c547;margin-bottom:4px;text-align:center">NOiduo</div>
+      <div id="auth-subtitle" style="font-size:13px;color:#555;margin-bottom:28px;text-align:center">Budget familiare condiviso</div>
       <div id="auth-error"></div>
+
       <div id="auth-form-login">
-        <button class="auth-google" onclick="doGoogleLogin()" style="display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;color:#1f1f1f;border-radius:10px;padding:13px;font-size:15px;font-weight:600;cursor:pointer;border:none;width:100%;margin-bottom:10px;font-family:inherit">
-          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.59-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        <button class="auth-primary google-btn" onclick="doGoogleLogin()">
+          <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58z"/></svg>
           Accedi con Google
         </button>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-          <div style="flex:1;height:1px;background:#252530"></div>
-          <span style="font-size:11px;color:#444">oppure con email</span>
-          <div style="flex:1;height:1px;background:#252530"></div>
+        <div style="display:flex;align-items:center;gap:10px;margin:4px 0 12px">
+          <div style="flex:1;height:1px;background:#1f1f28"></div>
+          <span style="font-size:12px;color:#555">oppure con email</span>
+          <div style="flex:1;height:1px;background:#1f1f28"></div>
         </div>
         <input type="email" id="auth-email" placeholder="Email" autocomplete="email" />
         <input type="password" id="auth-password" placeholder="Password" autocomplete="current-password" />
@@ -53,26 +57,25 @@
         <button class="auth-link" onclick="showRegister()">Non hai un account? Crea famiglia →</button>
         <button class="auth-link" onclick="showJoin()">Hai un codice famiglia? Unisciti →</button>
       </div>
+
       <div id="auth-form-register" style="display:none">
-        <button class="auth-google" onclick="doGoogleLogin()" style="display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;color:#1f1f1f;border-radius:10px;padding:13px;font-size:15px;font-weight:600;cursor:pointer;border:none;width:100%;margin-bottom:10px;font-family:inherit">
-          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.59-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        <button class="auth-primary google-btn" onclick="doGoogleLogin()">
+          <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58z"/></svg>
           Crea famiglia con Google
         </button>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-          <div style="flex:1;height:1px;background:#252530"></div>
-          <span style="font-size:11px;color:#444">oppure con email</span>
-          <div style="flex:1;height:1px;background:#252530"></div>
+        <div style="display:flex;align-items:center;gap:10px;margin:4px 0 12px">
+          <div style="flex:1;height:1px;background:#1f1f28"></div>
+          <span style="font-size:12px;color:#555">oppure con email</span>
+          <div style="flex:1;height:1px;background:#1f1f28"></div>
         </div>
         <div style="font-size:12px;color:#666;margin-bottom:10px">Crea una nuova famiglia — potrai invitare altri con un codice</div>
-        <div style="font-size:12px;color:#27ae60;background:rgba(39,174,96,0.1);border:1px solid rgba(39,174,96,0.25);border-radius:8px;padding:10px;margin-bottom:10px">
-          ✅ <strong>I tuoi dati esistenti verranno migrati automaticamente</strong> — non perderai nulla
-        </div>
         <input type="email" id="reg-email" placeholder="Email" autocomplete="email" />
         <input type="password" id="reg-password" placeholder="Password (min 6 caratteri)" autocomplete="new-password" />
-        <input type="text" id="reg-name" placeholder="Nome famiglia (es. Diego &amp; Carmen)" />
+        <input type="text" id="reg-name" placeholder="Nome famiglia (es. Diego & Carmen)" />
         <button class="auth-primary" onclick="doRegister()">✨ Crea famiglia</button>
         <button class="auth-link" onclick="showLogin()">← Torna al login</button>
       </div>
+
       <div id="auth-form-join" style="display:none">
         <div style="font-size:12px;color:#666;margin-bottom:10px">Inserisci il codice a 6 lettere che ti ha dato il tuo partner</div>
         <input type="email" id="join-email" placeholder="Email" autocomplete="email" />
@@ -93,10 +96,18 @@
 
   <script>
   window.addEventListener('load', function() {
+    // Fallback: if loading gets stuck, show auth screen after 8s
+    setTimeout(function() {
+      var ls = document.getElementById('loading-screen');
+      var as = document.getElementById('auth-screen');
+      if (ls && ls.style.display !== 'none' && as && as.style.display === 'none') {
+        ls.style.display = 'none';
+        as.style.display = 'flex';
+        document.getElementById('auth-error').textContent = 'Connessione lenta - riprova';
+      }
+    }, 8000);
     try {
       if (!window.React || !window.ReactDOM) throw new Error('React non caricato');
-      const { useState, useEffect } = React;
-      const { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, Cell } = window.Recharts || {};
 
       firebase.initializeApp({
         apiKey: "AIzaSyBDTMPfdMxsvstKYpvQh_95URYfN5JdzEE",
@@ -108,163 +119,58 @@
         appId: "1:290834672771:web:0e92b118cefea511a1bfb6"
       });
 
+      console.log('[NOiduo] Firebase initialized, setting up DB and Auth');
       const _db = firebase.database();
       const _auth = firebase.auth();
       const _cache = {};
       let _ref = null;
-      let _currentFamilyId = null;
       let _appStarted = false;
+      let _currentFamilyId = null;
 
-      // ── Auth helpers ────────────────────────────────────────────
-      function genCode() {
-        return Math.random().toString(36).substring(2,8).toUpperCase();
+      window._logout = () => _auth.signOut().then(() => location.reload());
+      window._getFamilyMeta = () => _currentFamilyId
+        ? _db.ref('familyMeta/' + _currentFamilyId).once('value').then(s => s.val())
+        : Promise.resolve(null);
+
+      function setError(msg) {
+        const el = document.getElementById('auth-error');
+        if (el) el.textContent = msg;
       }
-
-      function setAuthError(msg) {
-        document.getElementById('auth-error').textContent = msg;
+      function setLoading(msg) {
+        document.getElementById('loading-msg').textContent = msg || 'Caricamento...';
+        document.getElementById('loading-screen').style.display = 'flex';
+        document.getElementById('auth-screen').style.display = 'none';
       }
-
+      function showAuth() {
+        document.getElementById('loading-screen').style.display = 'none';
+        document.getElementById('auth-screen').style.display = 'flex';
+      }
       function showLogin() {
-        setAuthError('');
         document.getElementById('auth-form-login').style.display = '';
         document.getElementById('auth-form-register').style.display = 'none';
         document.getElementById('auth-form-join').style.display = 'none';
-        document.getElementById('auth-subtitle').textContent = 'Accedi alla tua famiglia';
+        setError('');
       }
-
       function showRegister() {
-        setAuthError('');
         document.getElementById('auth-form-login').style.display = 'none';
         document.getElementById('auth-form-register').style.display = '';
         document.getElementById('auth-form-join').style.display = 'none';
-        document.getElementById('auth-subtitle').textContent = 'Crea una nuova famiglia';
+        setError('');
       }
-
       function showJoin() {
-        setAuthError('');
         document.getElementById('auth-form-login').style.display = 'none';
         document.getElementById('auth-form-register').style.display = 'none';
         document.getElementById('auth-form-join').style.display = '';
-        document.getElementById('auth-subtitle').textContent = 'Unisciti a una famiglia esistente';
+        setError('');
       }
-
       window.showLogin = showLogin;
       window.showRegister = showRegister;
       window.showJoin = showJoin;
 
-      async function doLogin() {
-        const email = document.getElementById('auth-email').value.trim();
-        const pass = document.getElementById('auth-password').value;
-        setAuthError('');
-        if (!email || !pass) { setAuthError('Inserisci email e password'); return; }
-        try {
-          await _auth.signInWithEmailAndPassword(email, pass);
-        } catch(e) {
-          const msgs = { 'auth/user-not-found':'Utente non trovato', 'auth/wrong-password':'Password errata', 'auth/invalid-email':'Email non valida', 'auth/invalid-credential':'Email o password errati' };
-          setAuthError(msgs[e.code] || e.message);
-        }
+      function genCode() {
+        return Math.random().toString(36).substring(2,8).toUpperCase();
       }
 
-      async function doRegister() {
-        const email = document.getElementById('reg-email').value.trim();
-        const pass = document.getElementById('reg-password').value;
-        const name = document.getElementById('reg-name').value.trim();
-        setAuthError('');
-        if (!email || !pass || !name) { setAuthError('Compila tutti i campi'); return; }
-        if (pass.length < 6) { setAuthError('Password minimo 6 caratteri'); return; }
-        try {
-          const cred = await _auth.createUserWithEmailAndPassword(email, pass);
-          const uid = cred.user.uid;
-          const code = genCode();
-          // Save family mapping
-          await _db.ref('userFamily/' + uid).set(uid);
-          await _db.ref('familyCodes/' + code).set(uid);
-          await _db.ref('familyMeta/' + uid).set({ name, code, owner: email, createdAt: Date.now() });
-          // 🔄 Migrate existing data from budget/family → budget/{uid}
-          const existingSnap = await _db.ref('budget/family').once('value');
-          const existingData = existingSnap.val();
-          if (existingData && Object.keys(existingData).length > 0) {
-            await _db.ref('budget/' + uid).update(existingData);
-            console.log('✅ Dati migrati da budget/family a budget/' + uid);
-          } else {
-            // No existing data → set names from form
-            await _db.ref('budget/' + uid + '/bgt-names').set(JSON.stringify({p1: name.split(/[&\/]/)[0]?.trim() || '', p2: name.split(/[&\/]/)[1]?.trim() || ''}));
-          }
-        } catch(e) {
-          const msgs = { 'auth/email-already-in-use':'Email già registrata — prova ad accedere', 'auth/weak-password':'Password troppo debole', 'auth/invalid-email':'Email non valida' };
-          setAuthError(msgs[e.code] || e.message);
-        }
-      }
-
-      async function doJoin() {
-        const email = document.getElementById('join-email').value.trim();
-        const pass = document.getElementById('join-password').value;
-        const code = document.getElementById('join-code').value.trim().toUpperCase();
-        setAuthError('');
-        if (!email || !pass || !code) { setAuthError('Compila tutti i campi'); return; }
-        try {
-          // Check code first
-          const snap = await _db.ref('familyCodes/' + code).once('value');
-          if (!snap.val()) { setAuthError('Codice famiglia non trovato'); return; }
-          const familyId = snap.val();
-          // Create or login user
-          let uid;
-          try {
-            const cred = await _auth.createUserWithEmailAndPassword(email, pass);
-            uid = cred.user.uid;
-          } catch(e) {
-            if (e.code === 'auth/email-already-in-use') {
-              const cred = await _auth.signInWithEmailAndPassword(email, pass);
-              uid = cred.user.uid;
-            } else throw e;
-          }
-          await _db.ref('userFamily/' + uid).set(familyId);
-        } catch(e) {
-          const msgs = { 'auth/wrong-password':'Password errata', 'auth/invalid-email':'Email non valida', 'auth/weak-password':'Password troppo debole (min 6 caratteri)', 'auth/invalid-credential':'Credenziali non valide' };
-          setAuthError(msgs[e.code] || e.message);
-        }
-      }
-
-      window.doLogin = doLogin;
-      window.doRegister = doRegister;
-      window.doJoin = doJoin;
-
-      async function doGoogleLogin() {
-        setAuthError('');
-        try {
-          const provider = new firebase.auth.GoogleAuthProvider();
-          const cred = await _auth.signInWithPopup(provider);
-          const user = cred.user;
-          const uid = user.uid;
-          // Check if this user already has a family
-          const famSnap = await _db.ref('userFamily/' + uid).once('value');
-          if (!famSnap.val()) {
-            // First time with Google → create new family, migrate old data
-            const code = genCode();
-            const name = user.displayName || user.email.split('@')[0];
-            await _db.ref('userFamily/' + uid).set(uid);
-            await _db.ref('familyCodes/' + code).set(uid);
-            await _db.ref('familyMeta/' + uid).set({ name, code, owner: user.email, createdAt: Date.now() });
-            // Migrate existing budget/family data if present
-            const existingSnap = await _db.ref('budget/family').once('value');
-            const existingData = existingSnap.val();
-            if (existingData && Object.keys(existingData).length > 0) {
-              await _db.ref('budget/' + uid).update(existingData);
-            }
-          }
-          // onAuthStateChanged will handle the rest
-        } catch(e) {
-          if (e.code === 'auth/popup-closed-by-user') return;
-          if (e.code === 'auth/account-exists-with-different-credential') {
-            setAuthError('Questa email è già registrata con email/password. Accedi con email/password.');
-            return;
-          }
-          setAuthError(e.message);
-        }
-      }
-      window.doGoogleLogin = doGoogleLogin;
-
-      // ── Start app with a specific family ───────────────────────
       function startApp(familyId) {
         if (_appStarted) return;
         _appStarted = true;
@@ -272,7 +178,6 @@
         _ref = _db.ref('budget/' + familyId);
         window._familyId = familyId;
 
-        // Override localStorage → Firebase
         const lsProxy = {
           getItem:    (k) => k in _cache ? _cache[k] : null,
           setItem:    (k, v) => { _cache[k] = v; _ref.update({[k]: v}).catch(console.error); },
@@ -290,7 +195,6 @@
           orig.removeItem = lsProxy.removeItem;
         }
 
-        // Real-time sync banner
         let _firstLoad = true;
         _ref.on('value', snap => {
           const remote = snap.val() || {};
@@ -310,7 +214,7 @@
           }
         });
 
-        document.getElementById('loading-msg').textContent = 'Caricamento dati...';
+        setLoading('Caricamento dati...');
         document.getElementById('auth-screen').style.display = 'none';
         _ref.once('value')
           .then(snap => { const d = snap.val(); if (d) Object.assign(_cache, d); })
@@ -318,516 +222,131 @@
           .finally(() => {
             _firstLoad = false;
             document.getElementById('loading-screen').style.display = 'none';
+            try {
+              ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
+            } catch(e) {
+              console.error('React mount error:', e);
+              document.getElementById('loading-screen').innerHTML = '<div style="color:#e74c3c;padding:40px;text-align:center;font-family:sans-serif">Errore: ' + e.message + '<br><br><button onclick="location.reload()" style="background:#e8c547;color:#000;border:none;padding:10px 20px;border-radius:8px;cursor:pointer">Ricarica</button></div>';
+              document.getElementById('loading-screen').style.display = 'flex';
+            }
+          });
+      }
 
+      // Auth handlers
+      window.doLogin = async function() {
+        const email = document.getElementById('auth-email').value.trim();
+        const pw = document.getElementById('auth-password').value;
+        if (!email || !pw) return setError('Inserisci email e password');
+        setError(''); setLoading('Accesso...');
+        try {
+          const cred = await _auth.signInWithEmailAndPassword(email, pw);
+          const snap = await _db.ref('userFamily/' + cred.user.uid).once('value');
+          const familyId = snap.val() || cred.user.uid;
+          startApp(familyId);
+        } catch(e) {
+          showAuth(); showLogin();
+          setError(e.code === 'auth/wrong-password' ? 'Password errata' : e.code === 'auth/user-not-found' ? 'Account non trovato' : e.message);
+        }
+      };
 
+      window.doRegister = async function() {
+        const email = document.getElementById('reg-email').value.trim();
+        const pw = document.getElementById('reg-password').value;
+        const name = document.getElementById('reg-name').value.trim();
+        if (!email || !pw) return setError('Inserisci email e password');
+        if (pw.length < 6) return setError('Password troppo corta (min 6)');
+        setError(''); setLoading('Creazione famiglia...');
+        try {
+          const cred = await _auth.createUserWithEmailAndPassword(email, pw);
+          const uid = cred.user.uid;
+          const code = genCode();
+          await _db.ref('userFamily/' + uid).set(uid);
+          await _db.ref('familyCodes/' + code).set(uid);
+          await _db.ref('familyMeta/' + uid).set({ name: name || 'La mia famiglia', code, owner: uid, createdAt: Date.now() });
+          // Migrate old data
+          const old = await _db.ref('budget/family').once('value');
+          if (old.val()) await _db.ref('budget/' + uid).update(old.val());
+          startApp(uid);
+        } catch(e) {
+          showAuth(); showRegister();
+          setError(e.code === 'auth/email-already-in-use' ? 'Email già registrata' : e.message);
+        }
+      };
 
+      window.doJoin = async function() {
+        const email = document.getElementById('join-email').value.trim();
+        const pw = document.getElementById('join-password').value;
+        const code = document.getElementById('join-code').value.trim().toUpperCase();
+        if (!email || !pw || !code) return setError('Compila tutti i campi');
+        setError(''); setLoading('Connessione famiglia...');
+        try {
+          const codeSnap = await _db.ref('familyCodes/' + code).once('value');
+          if (!codeSnap.val()) { showAuth(); showJoin(); return setError('Codice non valido'); }
+          const familyId = codeSnap.val();
+          let cred;
+          try { cred = await _auth.createUserWithEmailAndPassword(email, pw); }
+          catch(e) {
+            if (e.code === 'auth/email-already-in-use') cred = await _auth.signInWithEmailAndPassword(email, pw);
+            else throw e;
+          }
+          await _db.ref('userFamily/' + cred.user.uid).set(familyId);
+          startApp(familyId);
+        } catch(e) {
+          showAuth(); showJoin();
+          setError(e.message);
+        }
+      };
 
+      window.doGoogleLogin = async function() {
+        setError('');
+        try {
+          const provider = new firebase.auth.GoogleAuthProvider();
+          const cred = await _auth.signInWithPopup(provider);
+          const uid = cred.user.uid;
+          setLoading('Accesso Google...');
+          const snap = await _db.ref('userFamily/' + uid).once('value');
+          if (snap.val()) {
+            startApp(snap.val());
+          } else {
+            const code = genCode();
+            await _db.ref('userFamily/' + uid).set(uid);
+            await _db.ref('familyCodes/' + code).set(uid);
+            await _db.ref('familyMeta/' + uid).set({ name: cred.user.displayName || 'La mia famiglia', code, owner: uid, createdAt: Date.now() });
+            const old = await _db.ref('budget/family').once('value');
+            if (old.val()) await _db.ref('budget/' + uid).update(old.val());
+            startApp(uid);
+          }
+        } catch(e) {
+          showAuth(); showLogin();
+          setError(e.code === 'auth/popup-closed-by-user' ? '' : e.message);
+        }
+      };
 
+      // Check auth state
+      console.log('[NOiduo] Setting up onAuthStateChanged');
+      _auth.onAuthStateChanged(async user => {
+        console.log('[NOiduo] Auth state:', user ? 'logged in: ' + user.uid : 'not logged in');
+        if (user) {
+          if (!_appStarted) {
+            setLoading('Caricamento...');
+            const snap = await _db.ref('userFamily/' + user.uid).once('value');
+            const familyId = snap.val() || user.uid;
+            startApp(familyId);
+          }
+        } else {
+          document.getElementById('loading-screen').style.display = 'none';
+          document.getElementById('auth-screen').style.display = 'flex';
+        }
+      });
 
+    } catch(err) {
+      console.error(err);
+      document.getElementById('loading-screen').innerHTML = '<div style="color:#e74c3c;padding:40px;text-align:center;font-family:sans-serif">Errore: ' + err.message + '<br><br><button onclick="location.reload()" style="background:#e8c547;color:#000;border:none;padding:10px 20px;border-radius:8px;cursor:pointer">Ricarica</button></div>';
+    }
+  });
+  </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function useIsMobile() {
-    const [m, setM] = (0, React.useState)(typeof window !== 'undefined' ? window.innerWidth < 768 : true);
-    (0, React.useEffect)(() => {
-        const fn = () => setM(window.innerWidth < 768);
-        window.addEventListener('resize', fn);
-        return () => window.removeEventListener('resize', fn);
-    }, []);
-    return m;
-}
-function SimpleBarChart({ data, bars, height = 180, showValues = false }) {
-    const [tooltip, setTooltip] = React.useState(null);
-    if (!data || data.length === 0)
-        return null;
-    const maxVal = Math.max(1, ...data.flatMap(d => bars.map(b => Math.abs(d[b.dataKey] || 0))));
-    const fmt2 = v => v >= 1000 ? (v / 1000).toFixed(1) + 'k' : String(Math.round(v));
-    const fmtFull = v => new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(v || 0);
-    const gridLines = [maxVal, maxVal * 0.75, maxVal * 0.5, maxVal * 0.25, 0];
-    return (React.createElement("div", { style: { width: '100%', position: 'relative' } },
-        tooltip && (React.createElement("div", { style: { position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', background: '#1a1a26', border: '1px solid #2a2a38', borderRadius: 8, padding: '8px 14px', zIndex: 10, pointerEvents: 'none', whiteSpace: 'nowrap' } },
-            React.createElement("div", { style: { fontSize: 11, color: '#e8c547', fontWeight: 700, marginBottom: 4 } }, tooltip.name),
-            tooltip.items.map((item, i) => (React.createElement("div", { key: i, style: { fontSize: 11, color: item.color, marginBottom: 2 } },
-                item.label,
-                ": ",
-                fmtFull(item.val)))))),
-        React.createElement("div", { style: { display: 'flex', alignItems: 'flex-end', gap: 4, height: height, paddingLeft: 44, paddingRight: 8, position: 'relative' } },
-            gridLines.slice(0, -1).map((v, i) => (React.createElement("div", { key: i, style: { position: 'absolute', left: 44, right: 8, bottom: 22 + ((v / maxVal) * (height - 22)), borderTop: '1px dashed #1e1e28', pointerEvents: 'none' } },
-                React.createElement("span", { style: { position: 'absolute', left: -42, top: -8, fontSize: 9, color: '#444' } }, fmt2(v))))),
-            data.map((d, di) => (React.createElement("div", { key: di, style: { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: bars.length > 1 ? bars.length * 10 + 4 : 12 }, onMouseEnter: () => setTooltip({ name: d.name, items: bars.map(b => ({ label: b.name, val: d[b.dataKey] || 0, color: b.fill })) }), onMouseLeave: () => setTooltip(null) },
-                React.createElement("div", { style: { width: '100%', display: 'flex', gap: 2, alignItems: 'flex-end', height: height - 22 } }, bars.map((b, bi) => {
-                    const val = d[b.dataKey] || 0;
-                    const pct = maxVal > 0 ? (Math.abs(val) / maxVal) * 100 : 0;
-                    return (React.createElement("div", { key: bi, style: { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%' } },
-                        showValues && val > 0 && React.createElement("div", { style: { fontSize: 8, color: b.fill, marginBottom: 2, fontWeight: 700 } }, fmt2(val)),
-                        React.createElement("div", { style: { width: '100%', height: pct + '%', background: b.fill, borderRadius: '3px 3px 0 0', minHeight: val > 0 ? 3 : 0, transition: 'opacity 0.15s', opacity: tooltip && tooltip.name !== d.name ? 0.5 : 1 } })));
-                })),
-                React.createElement("div", { style: { fontSize: 9, color: '#666', marginTop: 3, textAlign: 'center', letterSpacing: 0.3 } }, d.name))))),
-        bars.length > 1 && React.createElement("div", { style: { display: 'flex', gap: 14, justifyContent: 'center', marginTop: 10, flexWrap: 'wrap' } }, bars.map((b, i) => (React.createElement("div", { key: i, style: { display: 'flex', alignItems: 'center', gap: 5 } },
-            React.createElement("div", { style: { width: 12, height: 12, background: b.fill, borderRadius: 3 } }),
-            React.createElement("span", { style: { fontSize: 11, color: '#888' } }, b.name)))))));
-}
-const TRANSLATIONS = {
-    it: {
-        months: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
-        days: ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"],
-        appSubtitle: "Budget Familiare",
-        // Main tabs
-        tabEntrate: "Entrate", tabBudget: "Budget", tabSpese: "Spese", tabCasa: "Casa",
-        // Sub tabs
-        subPlan: "Plan", subDaily: "Daily", subOverview: "Grafici",
-        subUscite: "Uscite", subStorico: "Storico",
-        subBollette: "Bollette", subGrafici: "Grafici", subPellet: "Pellet",
-        // Settings
-        settingsTitle: "Impostazioni", settingsPerson1: "Persona 1", settingsPerson2: "Persona 2",
-        settingsSave: "Salva modifiche", settingsStart: "Inizia →", settingsCancel: "Annulla",
-        settingsLang: "Lingua",
-        settingsOnboardingTitle: "Inserisci i nomi delle due persone per iniziare",
-        // Export/Import
-        exportImportTitle: "Esporta / Importa", exportTitle: "Esporta dati",
-        exportDesc: "Copia il testo qui sotto e salvalo. Incollalo nella sezione Importa su un altro dispositivo.",
-        exportCopy: "📋 Copia negli appunti",
-        importTitle: "Importa dati",
-        importDesc: "Incolla qui il testo esportato da un altro dispositivo.",
-        importWarning: "I dati attuali verranno sovrascritti.",
-        importBtn: "Importa e sostituisci",
-        importOk: "✅ Dati importati con successo!",
-        importErr: "❌ Formato non valido. Assicurati di incollare il testo completo.",
-        // Entrate
-        contribution: "Contributo famiglia", familyTotal: "Totale famiglia",
-        // Plan
-        planWarning: "Inserisci gli stipendi in Entrate per il calcolo automatico",
-        copyFromPrev: "Copia Plan da", overwrite: "(sovrascrive)",
-        copyConfirm: "Sovrascrivere", copyWith: "con i valori di",
-        copyYes: "Sì, copia", addItem: "+ Aggiungi voce",
-        planSummary: "Riepilogo", grandTotal: "Totale Plan",
-        // Daily
-        dailyBudget: "Budget Mensile", remaining: "Rimanente",
-        initialAvg: "Media/Giorno iniziale",
-        updatedAvg: "Media/Giorno oggi", daysLeft: "giorni rimasti",
-        budgetUse: "Utilizzo budget", todayMarker: "oggi",
-        noPlanData: "Inserisci i valori nel Plan → Revolut Cointestato per attivare il Daily Budget",
-        // Uscite
-        newExpense: "+ Nuova Spesa", editExpense: "✏️ Modifica Spesa",
-        saveExpense: "Salva Spesa", saveChanges: "💾 Salva Modifiche",
-        category: "Categoria", merchant: "Esercente / Descrizione",
-        merchantPlaceholder: "es. Esselunga, Zara...", date: "Data", amount: "Importo",
-        noExpenses: "Nessuna spesa questo mese", noFilter: "Nessuna spesa con questo filtro",
-        allCategories: "Tutte le categorie", byCategory: "Per Categoria",
-        totalMonth: "Totale", numExpenses: "spese",
-        sortDateDesc: "Data ↓", sortDateAsc: "Data ↑", sortAmountDesc: "Importo ↓", sortByCat: "Categoria",
-        // Storico
-        storicoTitle: "Storico Entrate", noData: "Nessun dato ancora",
-        // Bollette
-        bolletteTitle: "Bollette", yearSummary: "Riepilogo Annuale",
-        monthlyDetail: "Dettaglio Mensile — tocca un campo per modificarlo",
-        netLuce: "Luce netta", pannelliCredit: "PANNELLI (credito)", luceSpesa: "LUCE (spesa)",
-        delete: "Elimina", note: "NOTE",
-        // Grafici
-        graficiTitle: "Grafici Bollette", monthlyTrend: "Andamento Mensile", yearlyTotals: "Totale per Anno",
-        luceNetta: "Luce Netta (Luce − Pannelli)", gasePellet: "Gas e Pellet", gasePelletAnno: "Gas e Pellet per Anno",
-        luceAnno: "Luce per Anno", acquaAnno: "Acqua per Anno",
-        noGraficiData: "Inserisci dati nelle Bollette per vedere i grafici",
-        // Pellet
-        pelletTitle: "Tracker Pellet 🪵", currentStatus: "Situazione attuale",
-        bagsLeft: "sacchi rimasti", avgPerDay: "Media/giorno", bags: "sacchi",
-        totalBought: "Totale comprati", addRow: "➕ Nuova riga", editRow: "✏️ Modifica riga",
-        bought: "🛒 Comprati", consumed: "🔥 Consumati", add: "Aggiungi",
-        daysRemain: "giorni", finishOn: "finiscono il", noTracking: "Aggiungi la prima riga per iniziare il tracking",
-        // Overview
-        overviewTitle: "Grafici", monthlyPlan: "Piano Mensile", familyMonthly: "Totale Famiglia — Ultimi mesi",
-        essential: "Essential", extra: "Extra", saving: "Saving",
-        // Categories
-        catSpesa: "Spesa", catMangiare: "Mangiare Fuori", catProgrammati: "Programmati",
-        catShopping: "Shopping", catVarie: "Varie", catDivertimento: "Divertimento",
-        catSalute: "Salute", catTrasporti: "Trasporti", catServizi: "Servizi",
-        // Sections
-        sectionComune: "COMUNE", sectionPersonale: "PERSONALE", sectionRisparmi: "RISPARMI",
-        autoSplit: "split auto %", manualSplit: "manuali",
-        revolut: "Revolut Cointestato", spent: "Speso", perDay: "€/giorno", dayLabel: "giorno", monthlyPlanLabel: "Piano Mensile", familyMonthlyLabel: "Totale Famiglia — Ultimi mesi",
-    },
-    en: {
-        months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-        days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-        appSubtitle: "Family Budget",
-        tabEntrate: "Income", tabBudget: "Budget", tabSpese: "Expenses", tabCasa: "Home",
-        subPlan: "Plan", subDaily: "Daily", subOverview: "Grafici",
-        subUscite: "Expenses", subStorico: "History",
-        subBollette: "Bills", subGrafici: "Charts", subPellet: "Pellet",
-        settingsTitle: "Settings", settingsPerson1: "Person 1", settingsPerson2: "Person 2",
-        settingsSave: "Save changes", settingsStart: "Start →", settingsCancel: "Cancel",
-        settingsLang: "Language",
-        settingsOnboardingTitle: "Enter the names of the two people to get started",
-        exportImportTitle: "Export / Import", exportTitle: "Export data",
-        exportDesc: "Copy the text below and save it. Paste it in the Import section on another device.",
-        exportCopy: "📋 Copy to clipboard",
-        importTitle: "Import data",
-        importDesc: "Paste here the text exported from another device.",
-        importWarning: "Current data will be overwritten.",
-        importBtn: "Import and replace",
-        importOk: "✅ Data imported successfully!",
-        importErr: "❌ Invalid format. Make sure you paste the full text.",
-        contribution: "Family contribution", familyTotal: "Family total",
-        planWarning: "Enter salaries in Income for automatic calculation",
-        copyFromPrev: "Copy Plan from", overwrite: "(overwrites)",
-        copyConfirm: "Overwrite", copyWith: "with values from",
-        copyYes: "Yes, copy", addItem: "+ Add item",
-        planSummary: "Summary", grandTotal: "Total Plan",
-        dailyBudget: "Monthly Budget", remaining: "Remaining",
-        initialAvg: "Initial avg/day",
-        updatedAvg: "Today's avg/day", daysLeft: "days left",
-        budgetUse: "Budget usage", todayMarker: "today",
-        noPlanData: "Enter values in Plan → Revolut Cointestato to activate Daily Budget",
-        newExpense: "+ New Expense", editExpense: "✏️ Edit Expense",
-        saveExpense: "Save Expense", saveChanges: "💾 Save Changes",
-        category: "Category", merchant: "Merchant / Description",
-        merchantPlaceholder: "e.g. Amazon, Zara...", date: "Date", amount: "Amount",
-        noExpenses: "No expenses this month", noFilter: "No expenses with this filter",
-        allCategories: "All categories", byCategory: "By Category",
-        totalMonth: "Total", numExpenses: "expenses",
-        sortDateDesc: "Date ↓", sortDateAsc: "Date ↑", sortAmountDesc: "Amount ↓", sortByCat: "Category",
-        storicoTitle: "Income History", noData: "No data yet",
-        bolletteTitle: "Bills", yearSummary: "Yearly Summary",
-        monthlyDetail: "Monthly Detail — tap a field to edit",
-        netLuce: "Net electricity", pannelliCredit: "SOLAR PANELS (credit)", luceSpesa: "ELECTRICITY (expense)",
-        delete: "Delete", note: "NOTES",
-        graficiTitle: "Bill Charts", monthlyTrend: "Monthly Trend", yearlyTotals: "Yearly Totals",
-        luceNetta: "Net Electricity (Elec − Solar)", gasePellet: "Gas & Pellet", gasePelletAnno: "Gas & Pellet per Year",
-        luceAnno: "Electricity per Year", acquaAnno: "Water per Year",
-        noGraficiData: "Enter bill data to see charts",
-        pelletTitle: "Pellet Tracker 🪵", currentStatus: "Current status",
-        bagsLeft: "bags remaining", avgPerDay: "Avg/day", bags: "bags",
-        totalBought: "Total bought", addRow: "➕ New row", editRow: "✏️ Edit row",
-        bought: "🛒 Bought", consumed: "🔥 Consumed", add: "Add",
-        daysRemain: "days", finishOn: "run out on", noTracking: "Add first row to start tracking",
-        overviewTitle: "Grafici", monthlyPlan: "Monthly Plan", familyMonthly: "Family Total — Last months",
-        essential: "Essential", extra: "Extra", saving: "Saving",
-        catSpesa: "Groceries", catMangiare: "Eating Out", catProgrammati: "Scheduled",
-        catShopping: "Shopping", catVarie: "Misc", catDivertimento: "Entertainment",
-        catSalute: "Health", catTrasporti: "Transport", catServizi: "Services",
-        sectionComune: "SHARED", sectionPersonale: "PERSONAL", sectionRisparmi: "SAVINGS",
-        autoSplit: "auto split %", manualSplit: "manual",
-        revolut: "Joint Revolut", spent: "Spent", perDay: "€/day", dayLabel: "day", monthlyPlanLabel: "Monthly Plan", familyMonthlyLabel: "Family Total — Last months",
-    },
-    es: {
-        months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-        days: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
-        appSubtitle: "Presupuesto Familiar",
-        tabEntrate: "Ingresos", tabBudget: "Presupuesto", tabSpese: "Gastos", tabCasa: "Casa",
-        subPlan: "Plan", subDaily: "Diario", subOverview: "Grafici",
-        subUscite: "Gastos", subStorico: "Historial",
-        subBollette: "Facturas", subGrafici: "Gráficos", subPellet: "Pellet",
-        settingsTitle: "Ajustes", settingsPerson1: "Persona 1", settingsPerson2: "Persona 2",
-        settingsSave: "Guardar cambios", settingsStart: "Empezar →", settingsCancel: "Cancelar",
-        settingsLang: "Idioma",
-        settingsOnboardingTitle: "Introduce los nombres de las dos personas para empezar",
-        exportImportTitle: "Exportar / Importar", exportTitle: "Exportar datos",
-        exportDesc: "Copia el texto y guárdalo. Pégalo en Importar en otro dispositivo.",
-        exportCopy: "📋 Copiar al portapapeles",
-        importTitle: "Importar datos",
-        importDesc: "Pega aquí el texto exportado desde otro dispositivo.",
-        importWarning: "Los datos actuales serán sobreescritos.",
-        importBtn: "Importar y reemplazar",
-        importOk: "✅ ¡Datos importados con éxito!",
-        importErr: "❌ Formato no válido. Asegúrate de pegar el texto completo.",
-        contribution: "Contribución familiar", familyTotal: "Total familiar",
-        planWarning: "Introduce los sueldos en Ingresos para el cálculo automático",
-        copyFromPrev: "Copiar Plan de", overwrite: "(sobreescribe)",
-        copyConfirm: "¿Sobreescribir", copyWith: "con los valores de",
-        copyYes: "Sí, copiar", addItem: "+ Añadir elemento",
-        planSummary: "Resumen", grandTotal: "Total Plan",
-        dailyBudget: "Presupuesto Mensual", remaining: "Restante",
-        initialAvg: "Media/día inicial",
-        updatedAvg: "Media/día hoy", daysLeft: "días restantes",
-        budgetUse: "Uso del presupuesto", todayMarker: "hoy",
-        noPlanData: "Introduce valores en Plan → Revolut Cointestato para activar el Diario",
-        newExpense: "+ Nuevo Gasto", editExpense: "✏️ Editar Gasto",
-        saveExpense: "Guardar Gasto", saveChanges: "💾 Guardar Cambios",
-        category: "Categoría", merchant: "Comercio / Descripción",
-        merchantPlaceholder: "ej. Mercadona, Zara...", date: "Fecha", amount: "Importe",
-        noExpenses: "Sin gastos este mes", noFilter: "Sin gastos con este filtro",
-        allCategories: "Todas las categorías", byCategory: "Por Categoría",
-        totalMonth: "Total", numExpenses: "gastos",
-        sortDateDesc: "Fecha ↓", sortDateAsc: "Fecha ↑", sortAmountDesc: "Importe ↓", sortByCat: "Categoría",
-        storicoTitle: "Historial de Ingresos", noData: "Sin datos todavía",
-        bolletteTitle: "Facturas", yearSummary: "Resumen Anual",
-        monthlyDetail: "Detalle Mensual — toca un campo para editar",
-        netLuce: "Electricidad neta", pannelliCredit: "PANELES SOLARES (crédito)", luceSpesa: "ELECTRICIDAD (gasto)",
-        delete: "Eliminar", note: "NOTAS",
-        graficiTitle: "Gráficos Facturas", monthlyTrend: "Tendencia Mensual", yearlyTotals: "Totales Anuales",
-        luceNetta: "Electricidad neta (Elec − Solar)", gasePellet: "Gas y Pellet", gasePelletAnno: "Gas y Pellet por Año",
-        luceAnno: "Electricidad por Año", acquaAnno: "Agua por Año",
-        noGraficiData: "Introduce datos en Facturas para ver los gráficos",
-        pelletTitle: "Tracker Pellet 🪵", currentStatus: "Situación actual",
-        bagsLeft: "sacos restantes", avgPerDay: "Media/día", bags: "sacos",
-        totalBought: "Total comprado", addRow: "➕ Nueva fila", editRow: "✏️ Editar fila",
-        bought: "🛒 Comprados", consumed: "🔥 Consumidos", add: "Añadir",
-        daysRemain: "días", finishOn: "se acaban el", noTracking: "Añade la primera fila para empezar",
-        overviewTitle: "Grafici", monthlyPlan: "Plan Mensual", familyMonthly: "Total Familiar — Últimos meses",
-        essential: "Esencial", extra: "Extra", saving: "Ahorro",
-        catSpesa: "Compras", catMangiare: "Comer Fuera", catProgrammati: "Programados",
-        catShopping: "Compras", catVarie: "Varios", catDivertimento: "Entretenimiento",
-        catSalute: "Salud", catTrasporti: "Transporte", catServizi: "Servicios",
-        sectionComune: "COMÚN", sectionPersonale: "PERSONAL", sectionRisparmi: "AHORROS",
-        autoSplit: "reparto auto %", manualSplit: "manual",
-        revolut: "Revolut Conjunto", spent: "Gastado", perDay: "€/día", dayLabel: "día", monthlyPlanLabel: "Plan Mensual", familyMonthlyLabel: "Total Familiar — Últimos meses",
-    },
-    de: {
-        months: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
-        days: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
-        appSubtitle: "Familienbudget",
-        tabEntrate: "Einnahmen", tabBudget: "Budget", tabSpese: "Ausgaben", tabCasa: "Haus",
-        subPlan: "Plan", subDaily: "Täglich", subOverview: "Grafici",
-        subUscite: "Ausgaben", subStorico: "Verlauf",
-        subBollette: "Rechnungen", subGrafici: "Diagramme", subPellet: "Pellet",
-        settingsTitle: "Einstellungen", settingsPerson1: "Person 1", settingsPerson2: "Person 2",
-        settingsSave: "Änderungen speichern", settingsStart: "Starten →", settingsCancel: "Abbrechen",
-        settingsLang: "Sprache",
-        settingsOnboardingTitle: "Namen der zwei Personen eingeben um zu starten",
-        exportImportTitle: "Exportieren / Importieren", exportTitle: "Daten exportieren",
-        exportDesc: "Kopiere den Text und speichere ihn. Füge ihn auf einem anderen Gerät ein.",
-        exportCopy: "📋 In Zwischenablage kopieren",
-        importTitle: "Daten importieren",
-        importDesc: "Füge hier den exportierten Text von einem anderen Gerät ein.",
-        importWarning: "Aktuelle Daten werden überschrieben.",
-        importBtn: "Importieren und ersetzen",
-        importOk: "✅ Daten erfolgreich importiert!",
-        importErr: "❌ Ungültiges Format. Stelle sicher, dass du den vollständigen Text einfügst.",
-        contribution: "Familienbeitrag", familyTotal: "Familien-Gesamt",
-        planWarning: "Gehälter in Einnahmen eingeben für automatische Berechnung",
-        copyFromPrev: "Plan kopieren von", overwrite: "(überschreibt)",
-        copyConfirm: "Überschreiben", copyWith: "mit Werten von",
-        copyYes: "Ja, kopieren", addItem: "+ Eintrag hinzufügen",
-        planSummary: "Zusammenfassung", grandTotal: "Plan Gesamt",
-        dailyBudget: "Monatsbudget", remaining: "Verbleibend",
-        initialAvg: "Ø/Tag (initial)",
-        updatedAvg: "Ø/Tag (heute)", daysLeft: "Tage verbleibend",
-        budgetUse: "Budgetnutzung", todayMarker: "heute",
-        noPlanData: "Werte im Plan eingeben um das Tagesbudget zu aktivieren",
-        newExpense: "+ Neue Ausgabe", editExpense: "✏️ Ausgabe bearbeiten",
-        saveExpense: "Ausgabe speichern", saveChanges: "💾 Änderungen speichern",
-        category: "Kategorie", merchant: "Händler / Beschreibung",
-        merchantPlaceholder: "z.B. Lidl, Zara...", date: "Datum", amount: "Betrag",
-        noExpenses: "Keine Ausgaben diesen Monat", noFilter: "Keine Ausgaben mit diesem Filter",
-        allCategories: "Alle Kategorien", byCategory: "Nach Kategorie",
-        totalMonth: "Gesamt", numExpenses: "Ausgaben",
-        sortDateDesc: "Datum ↓", sortDateAsc: "Datum ↑", sortAmountDesc: "Betrag ↓", sortByCat: "Kategorie",
-        storicoTitle: "Einnahmenverlauf", noData: "Noch keine Daten",
-        bolletteTitle: "Rechnungen", yearSummary: "Jahreszusammenfassung",
-        monthlyDetail: "Monatsdetail — Feld antippen zum Bearbeiten",
-        netLuce: "Netto-Strom", pannelliCredit: "SOLARANLAGE (Gutschrift)", luceSpesa: "STROM (Ausgabe)",
-        delete: "Löschen", note: "NOTIZEN",
-        graficiTitle: "Rechnungsdiagramme", monthlyTrend: "Monatlicher Trend", yearlyTotals: "Jahreszahlen",
-        luceNetta: "Netto-Strom (Strom − Solar)", gasePellet: "Gas & Pellet", gasePelletAnno: "Gas & Pellet pro Jahr",
-        luceAnno: "Strom pro Jahr", acquaAnno: "Wasser pro Jahr",
-        noGraficiData: "Rechnungsdaten eingeben um Diagramme zu sehen",
-        pelletTitle: "Pellet-Tracker 🪵", currentStatus: "Aktuelle Lage",
-        bagsLeft: "Säcke verbleibend", avgPerDay: "Ø/Tag", bags: "Säcke",
-        totalBought: "Gesamt gekauft", addRow: "➕ Neue Zeile", editRow: "✏️ Zeile bearbeiten",
-        bought: "🛒 Gekauft", consumed: "🔥 Verbraucht", add: "Hinzufügen",
-        daysRemain: "Tage", finishOn: "gehen aus am", noTracking: "Erste Zeile hinzufügen um zu starten",
-        overviewTitle: "Grafici", monthlyPlan: "Monatsplan", familyMonthly: "Familie Gesamt — Letzte Monate",
-        essential: "Wesentlich", extra: "Extra", saving: "Ersparnisse",
-        catSpesa: "Einkauf", catMangiare: "Essen gehen", catProgrammati: "Geplant",
-        catShopping: "Shopping", catVarie: "Sonstiges", catDivertimento: "Unterhaltung",
-        catSalute: "Gesundheit", catTrasporti: "Transport", catServizi: "Dienste",
-        sectionComune: "GEMEINSAM", sectionPersonale: "PERSÖNLICH", sectionRisparmi: "ERSPARNISSE",
-        autoSplit: "auto Aufteilung %", manualSplit: "manuell",
-        revolut: "Gemeinsames Revolut", spent: "Ausgegeben", perDay: "€/Tag", dayLabel: "Tag", monthlyPlanLabel: "Monatsplan", familyMonthlyLabel: "Familie Gesamt — Letzte Monate",
-    },
-    fr: {
-        months: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
-        days: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
-        appSubtitle: "Budget Familial",
-        tabEntrate: "Revenus", tabBudget: "Budget", tabSpese: "Dépenses", tabCasa: "Maison",
-        subPlan: "Plan", subDaily: "Quotidien", subOverview: "Grafici",
-        subUscite: "Dépenses", subStorico: "Historique",
-        subBollette: "Factures", subGrafici: "Graphiques", subPellet: "Pellet",
-        settingsTitle: "Paramètres", settingsPerson1: "Personne 1", settingsPerson2: "Personne 2",
-        settingsSave: "Enregistrer", settingsStart: "Commencer →", settingsCancel: "Annuler",
-        settingsLang: "Langue",
-        settingsOnboardingTitle: "Entrez les noms des deux personnes pour commencer",
-        exportImportTitle: "Exporter / Importer", exportTitle: "Exporter les données",
-        exportDesc: "Copiez le texte ci-dessous. Collez-le dans Importer sur un autre appareil.",
-        exportCopy: "📋 Copier dans le presse-papiers",
-        importTitle: "Importer les données",
-        importDesc: "Collez ici le texte exporté depuis un autre appareil.",
-        importWarning: "Les données actuelles seront écrasées.",
-        importBtn: "Importer et remplacer",
-        importOk: "✅ Données importées avec succès !",
-        importErr: "❌ Format invalide. Assurez-vous de coller le texte complet.",
-        contribution: "Contribution familiale", familyTotal: "Total familial",
-        planWarning: "Entrez les salaires dans Revenus pour le calcul automatique",
-        copyFromPrev: "Copier le Plan de", overwrite: "(écrase)",
-        copyConfirm: "Écraser", copyWith: "avec les valeurs de",
-        copyYes: "Oui, copier", addItem: "+ Ajouter un élément",
-        planSummary: "Récapitulatif", grandTotal: "Total Plan",
-        dailyBudget: "Budget Mensuel", remaining: "Restant",
-        initialAvg: "Moy/jour initial",
-        updatedAvg: "Moy/jour aujourd'hui", daysLeft: "jours restants",
-        budgetUse: "Utilisation budget", todayMarker: "aujourd'hui",
-        noPlanData: "Entrez des valeurs dans Plan → Revolut Cointestato pour activer le Budget Quotidien",
-        newExpense: "+ Nouvelle Dépense", editExpense: "✏️ Modifier Dépense",
-        saveExpense: "Enregistrer", saveChanges: "💾 Enregistrer",
-        category: "Catégorie", merchant: "Commerçant / Description",
-        merchantPlaceholder: "ex. Carrefour, Zara...", date: "Date", amount: "Montant",
-        noExpenses: "Aucune dépense ce mois", noFilter: "Aucune dépense avec ce filtre",
-        allCategories: "Toutes les catégories", byCategory: "Par Catégorie",
-        totalMonth: "Total", numExpenses: "dépenses",
-        sortDateDesc: "Date ↓", sortDateAsc: "Date ↑", sortAmountDesc: "Montant ↓", sortByCat: "Catégorie",
-        storicoTitle: "Historique des Revenus", noData: "Pas encore de données",
-        bolletteTitle: "Factures", yearSummary: "Récapitulatif Annuel",
-        monthlyDetail: "Détail Mensuel — touchez un champ pour modifier",
-        netLuce: "Électricité nette", pannelliCredit: "PANNEAUX SOLAIRES (crédit)", luceSpesa: "ÉLECTRICITÉ (dépense)",
-        delete: "Supprimer", note: "NOTES",
-        graficiTitle: "Graphiques Factures", monthlyTrend: "Tendance Mensuelle", yearlyTotals: "Totaux Annuels",
-        luceNetta: "Électricité nette (Élec − Solaire)", gasePellet: "Gaz & Pellet", gasePelletAnno: "Gaz & Pellet par An",
-        luceAnno: "Électricité par An", acquaAnno: "Eau par An",
-        noGraficiData: "Entrez des données dans Factures pour voir les graphiques",
-        pelletTitle: "Tracker Pellet 🪵", currentStatus: "Situation actuelle",
-        bagsLeft: "sacs restants", avgPerDay: "Moy/jour", bags: "sacs",
-        totalBought: "Total acheté", addRow: "➕ Nouvelle ligne", editRow: "✏️ Modifier ligne",
-        bought: "🛒 Achetés", consumed: "🔥 Consommés", add: "Ajouter",
-        daysRemain: "jours", finishOn: "se terminent le", noTracking: "Ajoutez la première ligne pour commencer",
-        overviewTitle: "Grafici", monthlyPlan: "Plan Mensuel", familyMonthly: "Total Famille — Derniers mois",
-        essential: "Essentiel", extra: "Extra", saving: "Épargne",
-        catSpesa: "Courses", catMangiare: "Resto", catProgrammati: "Programmés",
-        catShopping: "Shopping", catVarie: "Divers", catDivertimento: "Loisirs",
-        catSalute: "Santé", catTrasporti: "Transport", catServizi: "Services",
-        sectionComune: "COMMUN", sectionPersonale: "PERSONNEL", sectionRisparmi: "ÉPARGNE",
-        autoSplit: "répartition auto %", manualSplit: "manuel",
-        revolut: "Revolut Commun", spent: "Dépensé", perDay: "€/jour", dayLabel: "jour", monthlyPlanLabel: "Plan Mensuel", familyMonthlyLabel: "Total Famille — Derniers mois",
-    },
-};
-const LANG_OPTIONS = [
-    { code: "it", label: "🇮🇹 Italiano" },
-    { code: "en", label: "🇬🇧 English" },
-    { code: "es", label: "🇪🇸 Español" },
-    { code: "de", label: "🇩🇪 Deutsch" },
-    { code: "fr", label: "🇫🇷 Français" },
-];
-const YEARS = [2024, 2025, 2026, 2027];
-const CATEGORIE_BASE = [
-    { id: "spesa", tKey: "catSpesa", color: "#e67e22", bg: "rgba(230,126,34,0.2)" },
-    { id: "mangiare_fuori", tKey: "catMangiare", color: "#27ae60", bg: "rgba(39,174,96,0.2)" },
-    { id: "programmati", tKey: "catProgrammati", color: "#2980b9", bg: "rgba(41,128,185,0.2)" },
-    { id: "shopping", tKey: "catShopping", color: "#8e44ad", bg: "rgba(142,68,173,0.2)" },
-    { id: "varie", tKey: "catVarie", color: "#7f8c8d", bg: "rgba(127,140,141,0.2)" },
-    { id: "divertimento", tKey: "catDivertimento", color: "#16a085", bg: "rgba(22,160,133,0.2)" },
-    { id: "salute", tKey: "catSalute", color: "#e74c3c", bg: "rgba(231,76,60,0.2)" },
-    { id: "trasporti", tKey: "catTrasporti", color: "#c0392b", bg: "rgba(192,57,43,0.2)" },
-    { id: "servizi", tKey: "catServizi", color: "#2c3e50", bg: "rgba(44,62,80,0.2)" },
-];
-const PLAN_STRUCTURE = [
-    {
-        id: "revolut_cointestato", label: "Revolut Cointestato", section: "COMUNE", splitMode: "auto",
-        color: "#c0392b", bg: "rgba(192,57,43,0.13)", borderColor: "rgba(192,57,43,0.35)", pill: "#c0392b",
-        items: [
-            { id: "spese_essenziali", name: "Spese Essenziali", desc: "", cat: "essential" },
-            { id: "netflix", name: "Netflix", desc: "Visa Condivisa Diego", day: 3, cat: "extra" },
-            { id: "discovery", name: "Discovery+", desc: "Visa Condivisa Diego", day: 8, cat: "extra" },
-            { id: "icloud", name: "iCloud+ Apple", desc: "Visa Condivisa Diego", day: 6, cat: "extra" },
-            { id: "disney", name: "Disney+", desc: "Visa Condivisa Diego", day: 10, cat: "extra" },
-            { id: "assic_betty", name: "Assicurazione Betty", desc: "", day: 4, cat: "essential" },
-            { id: "telethon", name: "Telethon", desc: "", day: 16, cat: "extra" },
-            { id: "amazon_prime", name: "Amazon Prime", desc: "Visa Condivisa Diego", day: 19, cat: "extra" },
-            { id: "paramount", name: "Paramount", desc: "Visa Condivisa Diego", day: 18, cat: "extra" },
-            { id: "youtube", name: "Youtube Premium", desc: "Visa Condivisa Diego", day: 28, cat: "extra" },
-            { id: "hello_fresh", name: "Hello Fresh", desc: "", cat: "extra" },
-            { id: "easypark", name: "EasyPark", desc: "Visa Condivisa Diego", cat: "extra" },
-        ],
-    },
-    {
-        id: "vaults", label: "Vaults", section: "COMUNE", splitMode: "auto",
-        color: "#d35400", bg: "rgba(211,84,0,0.10)", borderColor: "rgba(211,84,0,0.32)", pill: "#d35400",
-        items: [
-            { id: "contanti", name: "Contanti", desc: "", cat: "essential" },
-            { id: "mutuo", name: "Mutuo", desc: "Rata 28° (€800) + Interessi Passivi Annuali Marzo (€1.500)", cat: "essential" },
-            { id: "scuole", name: "Scuole Puzzetti", desc: "Mensa + Doposcuola + LingoKids", cat: "essential" },
-            { id: "bollette", name: "Bollette", desc: "Enel + Telepass + Fastweb (15°) + Prima assic. Casa (€313,90 ann. 04/12)", cat: "essential" },
-            { id: "macchina", name: "Macchina", desc: "Ass. RCA Conte.it €415 ann. | Finanziamento €568,21/mese | Anticipo dopo 4 anni €12.000", cat: "essential" },
-            { id: "assic_medica", name: "Assicurazione Medica", desc: "UniSalute", cat: "essential" },
-            { id: "pulizia_casa", name: "Pulizia Casa", desc: "Barbara", cat: "extra" },
-            { id: "montagna", name: "Montagna", desc: "Romeno, etc.", cat: "extra" },
-            { id: "mare", name: "Mare", desc: "", cat: "extra" },
-            { id: "viaggi", name: "Viaggi", desc: "Roma, Torino, Ponti, Weekend, Estero + Parigi-Disneyland (fine Maggio)", cat: "extra" },
-            { id: "bettona", name: "Bettona & Caramellina", desc: "Spese veterinarie, sitting", cat: "extra" },
-            { id: "regali", name: "Regali", desc: "Natale, Compleanni, Onomastici", cat: "extra" },
-            { id: "vestiti_ed", name: "Vestiti Elena & Davide", desc: "", cat: "extra" },
-            { id: "sfizi_famiglia", name: "Sfizi Famiglia", desc: "Per casa, lavori, etc.", cat: "extra" },
-            { id: "mangiare_fuori", name: "Mangiare Fuori", desc: "", cat: "extra" },
-            { id: "attivita_puzzetti", name: "Attività Puzzetti", desc: "Centro estivo, Nuoto Davide, Inglese", cat: "extra" },
-            { id: "matrimonio", name: "Matrimonio", desc: "", cat: "extra" },
-        ],
-    },
-    {
-        id: "personale", label: "Personale", section: "PERSONALE", splitMode: "manual",
-        color: "#6c3483", bg: "rgba(108,52,131,0.12)", borderColor: "rgba(108,52,131,0.35)", pill: "#8e44ad",
-        items: [
-            { id: "pensione", name: "Pensione", desc: "", cat: "saving" },
-            { id: "onepassword", name: "1Password", desc: "€31,69 – Annuale – 14 Set", cat: "extra" },
-            { id: "google_one", name: "Google One", desc: "€99,99 – Annuale – 25 Feb", cat: "extra" },
-            { id: "dentista", name: "Dentista", desc: "Pulizia dei denti", cat: "essential" },
-            { id: "ps_plus", name: "PS+", desc: "€125 – Annuale – 12 Mar", cat: "extra" },
-            { id: "crossfit", name: "Crossfit / Pilates", desc: "", cat: "extra" },
-            { id: "surfshark", name: "Surfshark", desc: "€50 – Annuale – 17 Feb – PayPal Diego", cat: "extra" },
-            { id: "vestiti_sfizi", name: "Vestiti / Sfizi", desc: "", cat: "extra" },
-            { id: "parrucchiere", name: "Parrucchiere / Estetista", desc: "", cat: "extra" },
-            { id: "commercialista", name: "Commercialista", desc: "", cat: "essential" },
-            { id: "telefonino", name: "Telefonino", desc: "", cat: "essential" },
-        ],
-    },
-    {
-        id: "risparmi", label: "Risparmi", section: "RISPARMI", splitMode: "manual",
-        color: "#1e8449", bg: "rgba(30,132,73,0.10)", borderColor: "rgba(30,132,73,0.32)", pill: "#27ae60",
-        items: [
-            { id: "risparmi", name: "Risparmi", desc: "", cat: "saving" },
-        ],
-    },
-];
-const SECTION_LABELS = {
-    COMUNE: { color: "#c0392b", label: "COMUNE", tKey: "sectionComune" },
-    PERSONALE: { color: "#6c3483", label: "PERSONALE", tKey: "sectionPersonale" },
-    RISPARMI: { color: "#1e8449", label: "RISPARMI", tKey: "sectionRisparmi" },
-};
-const fmt = (n) => new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" }).format(n || 0);
-const pct = (n) => (typeof n === "number" ? n.toFixed(1) + "%" : "0.0%");
-const today = () => {
-    const d = new Date();
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-};
+  <script>
 
 
 function useIsMobile() {
@@ -3158,53 +2677,6 @@ function App() {
 // PLACEHOLDER - new sections inserted before closing return
 // ============================================================
 
-
-          try {
-            ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
-          } catch(e) {
-            document.getElementById('root').innerHTML = '<div style="color:#e74c3c;padding:40px;font-family:sans-serif">Errore: ' + e.message + '</div>';
-          }
-        });
-      }
-
-      // ── Auth state observer ─────────────────────────────────────
-      _auth.onAuthStateChanged(async (user) => {
-        if (!user) {
-          // Not logged in → show auth screen
-          document.getElementById('loading-screen').style.display = 'none';
-          const authEl = document.getElementById('auth-screen');
-          authEl.style.display = 'flex';
-          // Load DM Serif for auth screen
-          if (!document.querySelector('link[href*="DM+Serif"]')) {
-            const l = document.createElement('link');
-            l.rel = 'stylesheet';
-            l.href = 'https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;600;700&display=swap';
-            document.head.appendChild(l);
-          }
-          return;
-        }
-        // Logged in → find which family they belong to
-        try {
-          const famSnap = await _db.ref('userFamily/' + user.uid).once('value');
-          const familyId = famSnap.val() || user.uid;
-          // Expose logout + family info to React app
-          window._authUser = user;
-          window._logout = () => _auth.signOut().then(() => location.reload());
-          window._getFamilyMeta = async () => {
-            const m = await _db.ref('familyMeta/' + familyId).once('value');
-            return m.val() || {};
-          };
-          startApp(familyId);
-        } catch(e) {
-          console.warn('Family lookup error:', e);
-          startApp(user.uid);
-        }
-      });
-
-    } catch(err) {
-      document.getElementById('loading-screen').innerHTML = '<div style="color:#e74c3c;padding:40px;text-align:center;font-family:sans-serif">Errore: ' + err.message + '<br><br><button onclick="location.reload()" style="background:#e8c547;color:#000;border:none;padding:10px 20px;border-radius:8px;cursor:pointer">Ricarica</button></div>';
-    }
-  });
   </script>
 </body>
 </html>
