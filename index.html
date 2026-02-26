@@ -46,6 +46,9 @@
       </div>
       <div id="auth-form-register" style="display:none">
         <div style="font-size:12px;color:#666;margin-bottom:10px">Crea una nuova famiglia — potrai invitare altri con un codice</div>
+        <div style="font-size:12px;color:#27ae60;background:rgba(39,174,96,0.1);border:1px solid rgba(39,174,96,0.25);border-radius:8px;padding:10px;margin-bottom:10px">
+          ✅ <strong>I tuoi dati esistenti verranno migrati automaticamente</strong> — non perderai nulla
+        </div>
         <input type="email" id="reg-email" placeholder="Email" autocomplete="email" />
         <input type="password" id="reg-password" placeholder="Password (min 6 caratteri)" autocomplete="new-password" />
         <input type="text" id="reg-name" placeholder="Nome famiglia (es. Diego &amp; Carmen)" />
@@ -159,8 +162,16 @@
           await _db.ref('userFamily/' + uid).set(uid);
           await _db.ref('familyCodes/' + code).set(uid);
           await _db.ref('familyMeta/' + uid).set({ name, code, owner: email, createdAt: Date.now() });
-          // Pre-set family name in budget data
-          await _db.ref('budget/' + uid + '/bgt-names').set(JSON.stringify({p1: name.split(/\s*[&e]\s*/i)[0]?.trim() || '', p2: name.split(/\s*[&e]\s*/i)[1]?.trim() || ''}));
+          // 🔄 Migrate existing data from budget/family → budget/{uid}
+          const existingSnap = await _db.ref('budget/family').once('value');
+          const existingData = existingSnap.val();
+          if (existingData && Object.keys(existingData).length > 0) {
+            await _db.ref('budget/' + uid).update(existingData);
+            console.log('✅ Dati migrati da budget/family a budget/' + uid);
+          } else {
+            // No existing data → set names from form
+            await _db.ref('budget/' + uid + '/bgt-names').set(JSON.stringify({p1: name.split(/[&\/]/)[0]?.trim() || '', p2: name.split(/[&\/]/)[1]?.trim() || ''}));
+          }
         } catch(e) {
           const msgs = { 'auth/email-already-in-use':'Email già registrata — prova ad accedere', 'auth/weak-password':'Password troppo debole', 'auth/invalid-email':'Email non valida' };
           setAuthError(msgs[e.code] || e.message);
