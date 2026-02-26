@@ -132,6 +132,8 @@
 
 
 
+
+
 function useIsMobile() {
     const [m, setM] = (0, React.useState)(typeof window !== 'undefined' ? window.innerWidth < 768 : true);
     (0, React.useEffect)(() => {
@@ -1062,8 +1064,8 @@ function App() {
         button { cursor:pointer; border:none; font-family:inherit; background:none; }
         .tag { display:inline-flex; align-items:center; font-size:10px; font-weight:700; padding:2px 9px; border-radius:20px; letter-spacing:0.8px; text-transform:uppercase; color:#fff; white-space:nowrap; }
       `),
-        React.createElement("div", { style: { className: "mp-header", padding: isMobile ? "16px 16px 0" : "16px 32px 0", borderBottom: "1px solid #1a1a22", position: "sticky", top: 0, background: "#0d0d0f", zIndex: 20, paddingTop: "env(safe-area-inset-top, 16px)" } },
-            React.createElement("div", { style: { maxWidth: isMobile ? 680 : "none", margin: "0 auto" } },
+        React.createElement("div", { style: { padding: isMobile ? "16px 16px 0" : "16px 32px 0", borderBottom: "1px solid #1a1a22", position: "sticky", top: 0, background: "#0d0d0f", zIndex: 20, paddingTop: "env(safe-area-inset-top, 16px)", marginLeft: isMobile ? 0 : 220 } },
+            React.createElement("div", { style: { maxWidth: isMobile ? 680 : "none" } },
                 React.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 } },
                     React.createElement("div", null, isMobile && React.createElement("div", { style: { fontFamily: "'DM Serif Display',serif", fontSize: 24, color: "#e8c547" } }, "MoneyPal")),
                     React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
@@ -1078,7 +1080,7 @@ function App() {
                 tab === "budget" && (React.createElement("div", { style: { display: "flex", gap: 6, padding: "10px 0 12px" } }, [["plan", "subPlan"], ["daily", "subDaily"], ["overview", "subOverview"]].map(([s, k]) => (React.createElement("button", { key: s, onClick: () => setSubTab(s), style: { flex: 1, padding: "9px 0", borderRadius: 12, border: "none", fontFamily: "inherit", fontSize: 13, fontWeight: 600, cursor: "pointer", background: subTab === s ? "#e8c547" : "#1a1a22", color: subTab === s ? "#0d0d0f" : "#555", transition: "all 0.15s" } }, t(k)))))),
                 tab === "spese" && (React.createElement("div", { style: { display: "flex", gap: 6, padding: "10px 0 12px" } }, [["uscite", "subUscite"]].map(([s, k]) => (React.createElement("button", { key: s, onClick: () => setSubTab(s), style: { flex: 1, padding: "9px 0", borderRadius: 12, border: "none", fontFamily: "inherit", fontSize: 13, fontWeight: 600, cursor: "pointer", background: subTab === s ? "#e8c547" : "#1a1a22", color: subTab === s ? "#0d0d0f" : "#555", transition: "all 0.15s" } }, t(k)))))),
                 tab === "casa" && (React.createElement("div", { style: { display: "flex", gap: 6, padding: "10px 0 12px" } }, [["bollette", "subBollette"], ["pellet", "subPellet"], ["grafici", "subGrafici"]].map(([s, k]) => (React.createElement("button", { key: s, onClick: () => setSubTab(s), style: { flex: 1, padding: "9px 0", borderRadius: 12, border: "none", fontFamily: "inherit", fontSize: 13, fontWeight: 600, cursor: "pointer", background: subTab === s ? "#e8c547" : "#1a1a22", color: subTab === s ? "#0d0d0f" : "#555", transition: "all 0.15s" } }, t(k)))))))),
-        React.createElement("div", { style: { maxWidth: isMobile ? 680 : "none", margin: "0 auto", padding: isMobile ? "20px 16px 90px" : "24px 0 40px" } },
+        React.createElement("div", { style: { maxWidth: isMobile ? 680 : "none", margin: isMobile ? "0 auto" : "0", marginLeft: isMobile ? "auto" : 220, padding: isMobile ? "20px 16px 90px" : "28px 40px 40px" } },
             (tab === "entrate" && subTab !== "storico") && (() => {
                 const prevMonthE = month === 0 ? 11 : month - 1;
                 const prevYearE = month === 0 ? year - 1 : year;
@@ -1617,7 +1619,7 @@ function App() {
                             ": ",
                             fmt(p.value))))));
                 };
-                return (React.createElement("div", { style: { width: "100%" } },
+                return (React.createElement("div", { style: { width: "100%", minWidth: 0 } },
                     React.createElement("div", { style: { fontSize: 10, color: "#555", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 20 } }, t("overviewTitle")),
                     React.createElement("div", { style: { display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr 1fr", gap: isMobile ? 10 : 24, marginBottom: 24 } }, [[`diego`, N1, `#4a9eff`], [`carmen`, N2, `#ff6b9d`]].map(([p, label, color]) => (React.createElement("div", { key: p, style: { background: `${color}0d`, border: `1px solid ${color}22`, borderRadius: 14, padding: 16 } },
                         React.createElement("div", { style: { fontSize: 11, color, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", marginBottom: 12 } }, label),
@@ -1638,7 +1640,7 @@ function App() {
                                 "%") : null;
                         })))))),
                     chartData.length > 0 && (React.createElement(React.Fragment, null,
-                        React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 16 } },
+                        React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 16, width: "100%" } },
                             React.createElement("div", { style: { background: "#141418", border: "1px solid #1f1f28", borderRadius: 16, padding: isMobile ? "14px 8px 8px" : "20px 16px 16px" } },
                                 React.createElement("div", { style: { fontSize: isMobile ? 11 : 13, color: "#4a9eff", fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", marginBottom: isMobile ? 10 : 18, paddingLeft: isMobile ? 0 : 28 } }, `📊 ${N1} — ${t("monthlyPlanLabel")}`),
                                 React.createElement(SimpleBarChart, { data: chartData, height: isMobile ? 200 : 420, showValues: !isMobile, bars: [
