@@ -1640,6 +1640,35 @@ function App() {
                             "%)"),
                         React.createElement("div", { style: { fontSize: 19, fontWeight: 600 } }, fmt(v)))))))))),
             (tab === "spese" && subTab === "uscite") && (React.createElement("div", null,
+                (() => {
+                    const _rev = structure.find(g => g.id === "revolut_cointestato");
+                    const _bud = _rev ? _rev.items.reduce((a, item) => a + (parseFloat(currentPlan[item.id]) || 0), 0) : 0;
+                    const _dim = new Date(year, month + 1, 0).getDate();
+                    const _td = new Date();
+                    const _curMon = _td.getFullYear() === year && _td.getMonth() === month;
+                    const _day = _curMon ? _td.getDate() : _dim;
+                    const _spTot = monthUscite.reduce((a, u) => a + u.amount, 0);
+                    const _rim = _bud - _spTot;
+                    const _gRim = Math.max(0, _dim - _day);
+                    const _avg = _gRim > 0 ? _rim / _gRim : _rim;
+                    const _pct = _bud > 0 ? Math.min((_spTot / _bud) * 100, 100) : 0;
+                    const _ok = _rim >= 0;
+                    const _avgOk = _avg >= (_bud / _dim);
+                    if (_bud === 0) return null;
+                    return React.createElement("div", { style: { background: _ok ? "rgba(39,174,96,0.06)" : "rgba(231,76,60,0.06)", border: "1px solid " + (_ok ? "rgba(39,174,96,0.2)" : "rgba(231,76,60,0.2)"), borderRadius: 14, padding: "14px 16px", marginBottom: 14 } },
+                        React.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 } },
+                            React.createElement("div", null,
+                                React.createElement("div", { style: { fontSize: 9, color: "#555", textTransform: "uppercase", letterSpacing: 1, marginBottom: 3 } }, "Revolut — Rimanente"),
+                                React.createElement("div", { style: { fontFamily: "\'DM Serif Display\',serif", fontSize: 22, color: _ok ? "#27ae60" : "#e74c3c" } }, fmt(_rim))),
+                            React.createElement("div", { style: { textAlign: "right" } },
+                                React.createElement("div", { style: { fontSize: 9, color: "#555", textTransform: "uppercase", letterSpacing: 1, marginBottom: 3 } }, "€/giorno (" + _gRim + " giorni)"),
+                                React.createElement("div", { style: { fontFamily: "\'DM Serif Display\',serif", fontSize: 22, color: _avgOk ? "#27ae60" : _avg >= 0 ? "#e67e22" : "#e74c3c" } }, fmt(_avg)))),
+                        React.createElement("div", { style: { height: 5, borderRadius: 3, background: "#1f1f28", overflow: "hidden", marginBottom: 5 } },
+                            React.createElement("div", { style: { height: "100%", width: _pct + "%", background: _ok ? "#27ae60" : "#e74c3c", borderRadius: 3, transition: "width 0.4s ease" } })),
+                        React.createElement("div", { style: { display: "flex", justifyContent: "space-between", fontSize: 10, color: "#444" } },
+                            React.createElement("span", null, "Speso: " + fmt(_spTot)),
+                            React.createElement("span", null, _pct.toFixed(1) + "% del budget " + fmt(_bud))));
+                })(),
                 React.createElement("div", { style: { display: "flex", gap: 10, marginBottom: 16 } },
                     React.createElement("div", { style: { flex: 1, background: "#141418", border: "1px solid #222", borderRadius: 12, padding: "14px 16px" } },
                         React.createElement("div", { style: { fontSize: 10, color: "#555", letterSpacing: 1, textTransform: "uppercase", marginBottom: 6 } },
