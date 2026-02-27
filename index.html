@@ -2380,7 +2380,7 @@ function App() {
                 window.scrollTo({ top: 0, behavior: "smooth" });
             };
             const deleteLavoro = (id) => saveLavori(lavori.filter(l => l.id !== id));
-            return (React.createElement("div", null,
+            return (React.createElement("div", { style: { maxWidth: isMobile ? 680 : "none", margin: isMobile ? "0 auto" : "0", marginLeft: isMobile ? "auto" : 220, padding: isMobile ? "20px 16px 90px" : "28px 40px 40px" } },
                 React.createElement("div", { style: { fontSize: 10, color: "#555", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 16 } }, t("lavoriTitle")),
                 React.createElement("div", { style: { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8, marginBottom: 16 } }, [
                     { label: "Preventivo totale", val: totPrev, color: "#e8c547" },
@@ -2527,7 +2527,7 @@ function App() {
                 React.createElement("div", { style: { position: "relative" } },
                     React.createElement("span", { style: { position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)", color: "#555", fontSize: 12 } }, "\u20AC"),
                     React.createElement("input", { type: "number", value: casaMeta[field] || "", onChange: e => saveCasaMeta(Object.assign(Object.assign({}, casaMeta), { [field]: e.target.value })), style: { paddingLeft: 24, borderColor: `${color}33` } }))));
-            return (React.createElement("div", null,
+            return (React.createElement("div", { style: { maxWidth: isMobile ? 680 : "none", margin: isMobile ? "0 auto" : "0", marginLeft: isMobile ? "auto" : 220, padding: isMobile ? "20px 16px 90px" : "28px 40px 40px" } },
                 React.createElement("div", { style: { fontSize: 10, color: "#555", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 16 } }, t("overviewCasaTitle")),
                 React.createElement("div", { style: { background: "#141418", border: "1px solid #1f1f28", borderRadius: 14, padding: 16, marginBottom: 16 } },
                     React.createElement("div", { style: { fontSize: 11, color: "#e8c547", fontWeight: 700, letterSpacing: 1, marginBottom: 12 } }, "PARAMETRI"),
@@ -2632,7 +2632,7 @@ function App() {
             }
             const totPagato = months.reduce((a, mo) => a + pf(mutuoPagamenti[mo.key]), 0);
             const mutuoRim = pf(casaMeta.mutuoRimanente);
-            return (React.createElement("div", null,
+            return (React.createElement("div", { style: { maxWidth: isMobile ? 680 : "none", margin: isMobile ? "0 auto" : "0", marginLeft: isMobile ? "auto" : 220, padding: isMobile ? "20px 16px 90px" : "28px 40px 40px" } },
                 React.createElement("div", { style: { fontSize: 10, color: "#555", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 16 } }, t("mutuoTitle")),
                 React.createElement("div", { style: { background: "#141418", border: "1px solid #1f1f28", borderRadius: 12, padding: "12px 16px", marginBottom: 16 } },
                     React.createElement("div", { style: { fontSize: 11, color: "#666", fontWeight: 700, marginBottom: 10 } }, "INIZIO MUTUO"),
