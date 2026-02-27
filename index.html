@@ -907,7 +907,7 @@ function App() {
     // === CASA: Lavori / Overview / Mutuo ===
     const [lavori, setLavori] = (0, React.useState)([]);
     const [casaMeta, setCasaMeta] = (0, React.useState)({ valoreVendita: 580000, mutuoRimanente: 138660, rogitoDiego: 210688.31, rogitoCarmen: 0 });
-    const [mutuoPagamenti, setMutuoPagamenti] = (0, React.useState)({});
+    const [mutuoPagamenti, setMutuoPagamenti] = (0, React.useState)(() => { try { const _s = localStorage.getItem("bgt-mutuo"); return _s ? JSON.parse(_s) : {"2023-07": 800.65, "2023-08": 814.4, "2023-09": 828.22, "2023-10": 842.23, "2023-11": 846.78, "2023-12": 860.78, "2024-01": 860.78, "2024-02": 860.78, "2024-03": 856.13, "2024-04": 856.13, "2024-05": 856.13, "2024-06": 856.14, "2024-07": 851.54, "2024-08": 846.95, "2024-09": 837.84, "2024-10": 828.78, "2024-11": 819.81, "2024-12": 802.02, "2025-01": 780.09, "2025-02": 767.11, "2025-03": 6712.73, "2025-04": 708.93, "2025-05": 700.91, "2025-06": 689.0, "2025-07": 673.32, "2025-08": 661.71, "2025-09": 661.71, "2025-10": 661.71, "2025-11": 665.54, "2025-12": 661.72, "2026-01": 665.53}; } catch(e) { return {"2023-07": 800.65, "2023-08": 814.4, "2023-09": 828.22, "2023-10": 842.23, "2023-11": 846.78, "2023-12": 860.78, "2024-01": 860.78, "2024-02": 860.78, "2024-03": 856.13, "2024-04": 856.13, "2024-05": 856.13, "2024-06": 856.14, "2024-07": 851.54, "2024-08": 846.95, "2024-09": 837.84, "2024-10": 828.78, "2024-11": 819.81, "2024-12": 802.02, "2025-01": 780.09, "2025-02": 767.11, "2025-03": 6712.73, "2025-04": 708.93, "2025-05": 700.91, "2025-06": 689.0, "2025-07": 673.32, "2025-08": 661.71, "2025-09": 661.71, "2025-10": 661.71, "2025-11": 665.54, "2025-12": 661.72, "2026-01": 665.53}; } });
     const [showLavoriForm, setShowLavoriForm] = (0, React.useState)(false);
     const [editingLavoro, setEditingLavoro] = (0, React.useState)(null);
     const [lavoriForm, setLavoriForm] = (0, React.useState)({ data: today(), fornitore: "", prodotto: "", categoria: "lavori", dettagli: "", preventivo: "", iva: 0, pagatoDiego: "", pagatoCarmen: "", pagatoCoint: "", daPagareDiego: "", daPagareCarmen: "", daPagareCoint: "" });
@@ -1018,7 +1018,7 @@ function App() {
     const MONTHS = tr.months;
     const CATEGORIE = CATEGORIE_BASE.map(c => (Object.assign(Object.assign({}, c), { label: t(c.tKey) })));
     const exportData = () => {
-        const data = { names, history, plan, uscite, bollette, pelletLog };
+        const data = { names, history, plan, uscite, bollette, pelletLog, mutuoPagamenti, casaMeta, lavori };
         return JSON.stringify(data, null, 2);
     };
     const importData = async (jsonStr) => {
@@ -1047,6 +1047,18 @@ function App() {
             if (data.pelletLog) {
                 setPelletLog(data.pelletLog);
                 localStorage.setItem("bgt-pellet", JSON.stringify(data.pelletLog));
+            }
+            if (data.mutuoPagamenti) {
+                setMutuoPagamenti(data.mutuoPagamenti);
+                localStorage.setItem("bgt-mutuo", JSON.stringify(data.mutuoPagamenti));
+            }
+            if (data.casaMeta) {
+                setCasaMeta(data.casaMeta);
+                localStorage.setItem("bgt-casa-meta", JSON.stringify(data.casaMeta));
+            }
+            if (data.lavori) {
+                setLavori(data.lavori);
+                localStorage.setItem("bgt-lavori", JSON.stringify(data.lavori));
             }
             setImportStatus("ok");
             setTimeout(() => { setImportStatus(null); setImportText(""); setShowExportImport(false); }, 2000);
